@@ -1,5 +1,8 @@
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
+import tensorflow as tf
+import keras
+from keras import models
+from keras import layers
+from keras import ops
 import numpy as np
 
 # Load the preprocessed data
@@ -9,14 +12,14 @@ X_test = np.load('features/test_features.npy')
 y_test = np.load('features/test_labels.npy')
 
 # Build the neural network model
-model = Sequential()
-model.add(Dense(256, input_shape=(40,), activation='relu'))  # 40 MFCC features
-model.add(Dropout(0.3))
-model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(1, activation='sigmoid'))  # Binary classification (gunshot vs. not)
+model = keras.Sequential()
+model.add(keras.Dense(256, input_shape=(40,), activation='relu'))  # 40 MFCC features
+model.add(keras.Dropout(0.3))
+model.add(keras.Dense(128, activation='relu'))
+model.add(keras.Dropout(0.3))
+model.add(keras.Dense(64, activation='relu'))
+model.add(keras.Dropout(0.3))
+model.add(keras.Dense(1, activation='sigmoid'))  # Binary classification (gunshot vs. not)
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 

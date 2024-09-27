@@ -1,9 +1,10 @@
 # AI-based gunshot detection algorithm
 import librosa
-from keras.models import load_model
+import keras
+from keras import models
 import numpy as np
 
-model = load_model('/models/gunshot_classifier.h5')
+model = keras.models.load_model('/models/gunshot_classifier.h5')
 
 def detect_gunshot(audio_path):
     y, sr = librosa.load(audio_path, sr=44100)
